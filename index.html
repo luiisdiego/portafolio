@@ -34,7 +34,7 @@
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Esto previene el scroll horizontal general */
         }
 
         /* Fondo con grilla sutil */
@@ -56,7 +56,6 @@
         /* --- CLASES PARA IDIOMAS --- */
         .en { display: none; }
         
-        /* Botón de idioma */
         .lang-btn {
             background: transparent;
             border: 1px solid var(--primary);
@@ -139,10 +138,11 @@
             color: var(--text-muted);
             font-size: 1.5rem;
             border-right: 2px solid var(--primary);
-            white-space: nowrap;
+            white-space: nowrap; /* Mantiene el texto en una línea en PC */
             overflow: hidden;
             animation: blink 0.75s step-end infinite;
             min-height: 1.6em;
+            max-width: 100%;
         }
 
         .hero-text {
@@ -321,7 +321,7 @@
             border-radius: 8px;
             transition: 0.3s;
             border: 1px solid transparent;
-            cursor: pointer; /* Indica que se puede hacer clic */
+            cursor: pointer;
         }
 
         .project-card:hover {
@@ -352,7 +352,7 @@
             justify-content: space-between;
             align-items: center;
             transition: 0.2s;
-            cursor: pointer; /* Indica clic */
+            cursor: pointer;
         }
 
         .writeup-item:hover {
@@ -374,9 +374,9 @@
         .badge.medium { color: var(--bg-dark); background: var(--warning); }
         .badge.hard { color: var(--text-main); background: var(--danger); }
 
-        /* --- ESTILOS DE MODAL (POPUP) --- */
+        /* --- MODALES (POP-UPS) --- */
         .modal {
-            display: none; /* Oculto por defecto */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -384,7 +384,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro transparente */
+            background-color: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(5px);
         }
 
@@ -411,7 +411,6 @@
 
         .close-btn:hover { color: var(--primary); }
 
-        /* Estilos dentro del modal */
         .modal-body h2 { color: var(--primary); margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
         .modal-body h3 { color: var(--text-main); margin-top: 20px; }
         .modal-body p { margin-bottom: 15px; color: #cbd5e1; }
@@ -437,6 +436,14 @@
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; justify-content: center; }
             .modal-content { width: 95%; margin: 10% auto; padding: 20px; }
+
+            /* --- ARREGLO PARA MÓVIL: Typewriter Overflow --- */
+            .typewriter {
+                font-size: 1rem; /* Reducimos la letra en móvil */
+                white-space: normal; /* Permitimos que baje de línea */
+                height: auto; /* Altura automática */
+                border-right: none; /* Opcional: quitamos el cursor si molesta al bajar de línea */
+            }
         }
 
         @keyframes blink { 50% { border-color: transparent; } }
@@ -453,7 +460,6 @@
                 <a href="#projects"><span class="number">02.</span><span class="es">Proyectos</span><span class="en">Projects</span></a>
                 <a href="#writeups"><span class="number">03.</span>Walkthroughs</a>
             </div>
-            <!-- BOTÓN CAMBIO IDIOMA -->
             <button class="lang-btn" onclick="toggleLanguage()">ES / EN</button>
         </div>
     </nav>
@@ -490,7 +496,6 @@
             </div>
         </div>
 
-        <!-- BOTONES -->
         <div class="hero-buttons">
             <a href="#projects" class="btn">
                 <i class="fa-solid fa-folder-open"></i> 
@@ -510,7 +515,6 @@
             <h2><span class="es">Sobre Mí</span><span class="en">About Me</span></h2>
         </div>
         <div class="about-content">
-            <!-- Columna Izquierda: Texto -->
             <div>
                 <p>
                     <span class="es">
@@ -539,7 +543,6 @@
                     <span class="skill-tag">SIEM (Splunk)</span>
                 </div>
 
-                <!-- CERTIFICACIONES Y EDUCACIÓN -->
                 <h3 style="margin-top: 30px; color: var(--text-main);">
                     <span class="es">Educación y Certificaciones:</span><span class="en">Education & Certifications:</span>
                 </h3>
@@ -573,7 +576,6 @@
 
             </div>
 
-            <!-- Columna Derecha: Foto -->
             <div class="profile-container">
                 <img src="perfil.jpg" alt="Foto de Luis Diego" class="profile-img" onerror="this.src='https://via.placeholder.com/250x250/151725/00f3ff?text=Sube+Tu+Foto';">
             </div>
@@ -588,8 +590,17 @@
         </div>
         
         <div class="projects-grid">
+            <!-- 
+                ========================================================================
+                [INSTRUCCIÓN] CÓMO AGREGAR UN NUEVO PROYECTO:
+                1. Copia todo el bloque <div class="project-card" ...> hasta el cierre </div>
+                2. Pégalo debajo del último proyecto.
+                3. Cambia el 'onclick' para que apunte a un nuevo modal (ej: modal-nuevo)
+                4. Ve abajo a la sección de MODALES y crea el modal correspondiente.
+                ========================================================================
+            -->
+
             <!-- Proyecto 1 (Keylogger) -->
-            <!-- Al hacer clic, llama a openModal con el ID del contenido oculto -->
             <div class="project-card" onclick="openModal('modal-keylogger')">
                 <i class="fa-regular fa-folder folder-icon"></i>
                 <h3><span class="es">Keylogger en Python</span><span class="en">Python Keylogger</span></h3>
@@ -641,6 +652,16 @@
             <h2>TryHackMe Walkthroughs</h2>
         </div>
 
+        <!-- 
+            ========================================================================
+            [INSTRUCCIÓN] CÓMO AGREGAR UN NUEVO WALKTHROUGH:
+            1. Copia el bloque <div class="writeup-item" ...> completo.
+            2. Pégalo abajo.
+            3. Cambia el 'onclick' a un nombre nuevo (ej: modal-nueva-maquina)
+            4. Crea el modal correspondiente al final del archivo.
+            ========================================================================
+        -->
+
         <!-- Walkthrough 1: Pickle Rick -->
         <div class="writeup-item" onclick="openModal('modal-pickle')">
             <div class="writeup-info">
@@ -689,16 +710,32 @@
         </div>
     </footer>
 
-    <!-- ========================================== -->
-    <!-- CONTENIDO OCULTO (MODALES) - EDITA AQUÍ -->
-    <!-- ========================================== -->
+    <!-- ================================================================================= -->
+    <!--                               CONTENIDO OCULTO (MODALES)                          -->
+    <!-- Aquí es donde escribes la información detallada de tus Proyectos y Walkthroughs.  -->
+    <!-- ================================================================================= -->
+
+    <!-- 
+        PLANTILLA PARA NUEVO MODAL:
+        <div id="modal-TU-ID-NUEVO" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('modal-TU-ID-NUEVO')">&times;</span>
+                <div class="modal-body">
+                    <h2>Titulo</h2>
+                    <p>
+                        <span class="es">Texto español</span>
+                        <span class="en">English text</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    -->
 
     <!-- Modal 1: Keylogger -->
     <div id="modal-keylogger" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('modal-keylogger')">&times;</span>
             <div class="modal-body">
-                <!-- Contenido del Modal -->
                 <h2><span class="es">Keylogger en Python</span><span class="en">Python Keylogger</span></h2>
                 <p>
                     <span class="es">Este proyecto demuestra cómo el malware simple puede capturar entradas del usuario y enviarlas a un servidor remoto.</span>
@@ -864,6 +901,7 @@ keyboard.wait()</code></pre>
                 enElements.forEach(el => el.style.display = 'inline');
             }
 
+            // Reiniciar animación para que escriba en el nuevo idioma
             clearTimeout(typingTimeout);
             index = 0;
             textElement.innerHTML = '';
