@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Ciberseguridad</title>
+    <style>
+        /* --- ESTILOS GENERALES (CSS) --- */
+        :root {
+            --bg-color: #0a0f1c; /* Fondo oscuro azulado (Blue Team vibe) */
+            --text-color: #e0e6ed;
+            --accent-color: #38bdf8; /* Azul cyan brillante */
+            --secondary-bg: #1e293b;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: var(--accent-color); transition: 0.3s; }
+        a:hover { text-shadow: 0 0 10px var(--accent-color); }
+        
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 60px 0;
+            border-bottom: 1px solid #334155;
+            text-align: center;
+        }
+        .terminal-badge {
+            background-color: var(--secondary-bg);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            color: #4ade80; /* Verde terminal */
+            border: 1px solid #334155;
+        }
+        h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .subtitle { color: #94a3b8; font-size: 1.2em; }
+
+        /* --- SECCIONES --- */
+        section { padding: 40px 0; border-bottom: 1px solid #1e293b; }
+        h2 { 
+            border-left: 4px solid var(--accent-color); 
+            padding-left: 15px; 
+            margin-bottom: 30px;
+            font-family: var(--font-mono);
+        }
+
+        /* --- GRID DE PROYECTOS --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: var(--secondary-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        .card h3 { margin-top: 0; }
+        .tech-stack {
+            font-size: 0.85em;
+            color: #94a3b8;
+            font-family: var(--font-mono);
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* --- LISTA DE WALKTHROUGHS --- */
+        .walkthrough-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: var(--secondary-bg);
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .tag {
+            background: #0f172a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        .difficulty-easy { color: #4ade80; }
+        .difficulty-med { color: #facc15; }
+        .difficulty-hard { color: #f87171; }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #64748b;
+            font-size: 0.9em;
+        }
+
+        /* MOVIL */
+        @media (max-width: 600px) {
+            .walkthrough-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            h1 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <span class="terminal-badge">root@portfolio:~$ whoami</span>
+            <h1>TU NOMBRE AQUÍ</h1>
+            <p class="subtitle">Analista de Ciberseguridad | Blue Team | Pentester en Formación</p>
+            <div style="margin-top: 20px;">
+                <a href="https://linkedin.com" target="_blank">[ LinkedIn ]</a> &nbsp;
+                <a href="https://github.com" target="_blank">[ GitHub ]</a> &nbsp;
+                <a href="mailto:tuemail@dominio.com">[ Email ]</a>
+            </div>
+        </header>
+
+        <section id="about">
+            <h2>01_Sobre_Mí</h2>
+            <p>
+                Hola, soy un apasionado de la seguridad informática con enfoque en defensa (Blue Team). 
+                Actualmente estoy mejorando mis habilidades en detección de amenazas y respuesta a incidentes.
+            </p>
+            <ul>
+                <li><strong>Certificaciones:</strong> CompTIA Security+ (En progreso), Google Cybersecurity.</li>
+                <li><strong>Habilidades:</strong> Análisis de Logs, SIEM (Splunk), Python para Scripting, Linux Hardening.</li>
+                <li><strong>Idiomas:</strong> Español (Nativo), Inglés (Intermedio - B2).</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>02_Proyectos</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Lab de Directorio Activo</h3>
+                    <p>Implementación de un entorno virtualizado para simular ataques y defensas en AD.</p>
+                    <span class="tech-stack">Tecnologías: VirtualBox, Windows Server, PowerShell</span>
+                    <br><br>
+                    <a href="#">Ver en GitHub →</a>
+                </div>
+
+                <div class="card">
+                    <h3>Keylogger en Python</h3>
+                    <p>Script educativo para entender la captura de eventos de teclado y persistencia.</p>
+                    <span class="tech-stack">Tecnologías: Python, Librería keyboard</span>
+                    <br><br>
+                    <a href="#">Ver en GitHub →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="writeups">
+            <h2>03_Writeups_TryHackMe</h2>
+            
+            <div class="walkthrough-item">
+                <div>
+                    <strong>Pickle Rick</strong> 
+                    <span class="tag difficulty-easy">Fácil</span>
+                </div>
+                <a href="#">Leer Write-up →</a>
+            </div>
+
+            <div class="walkthrough-item">
+                <div>
+                    <strong>Blue</strong> 
+                    <span class="tag difficulty-easy">Fácil</span>
+                    <span class="tag">EternalBlue</span>
+                </div>
+                <a href="#">Leer Write-up →</a>
+            </div>
+
+            <div class="walkthrough-item">
+                <div>
+                    <strong>Anonymous</strong> 
+                    <span class="tag difficulty-med">Medio</span>
+                    <span class="tag">FTP</span>
+                </div>
+                <a href="#">Leer Write-up →</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>2025 © Tu Nombre - Construido para la seguridad.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
