@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Diego Salgado | Cybersecurity Portfolio</title>
+    <title>Luis Diego | Cybersecurity Portfolio</title>
     <!-- Iconos (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Fuente Google (Roboto Mono para código y Inter para texto) -->
@@ -244,6 +244,14 @@
             display: grid;
             grid-template-columns: 3fr 2fr;
             gap: 50px;
+            align-items: start; /* Alineación superior para que se vea mejor */
+        }
+
+        /* Columna derecha del About */
+        .about-visuals {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
             align-items: center;
         }
 
@@ -251,7 +259,8 @@
             position: relative;
             width: 250px;
             height: 250px;
-            margin: 0 auto;
+            margin: 0 auto; /* Centrado automático */
+            margin-bottom: 40px; /* Espacio debajo de la foto */
         }
 
         .profile-img {
@@ -262,13 +271,11 @@
             border: 2px solid var(--primary);
             box-shadow: 10px 10px 0px rgba(0, 243, 255, 0.2);
             transition: transform 0.3s ease;
-            filter: grayscale(100%);
         }
 
         .profile-container:hover .profile-img {
             transform: translate(-5px, -5px);
             box-shadow: 15px 15px 0px rgba(0, 243, 255, 0.4);
-            filter: grayscale(0%);
         }
 
         .profile-container::before {
@@ -302,10 +309,12 @@
 
         /* --- CERTIFICACIONES --- */
         .education-container {
-            margin-top: 20px; 
+            margin-top: 10px; 
             display: flex; 
             flex-direction: column; 
             gap: 20px;
+            width: 100%;
+            max-width: 350px;
         }
 
         /* --- PROYECTOS --- */
@@ -411,11 +420,25 @@
 
         .close-btn:hover { color: var(--primary); }
 
+        .modal-body {
+            /* Asegura que el contenido no desborde horizontalmente */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
         .modal-body h2 { color: var(--primary); margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
         .modal-body h3 { color: var(--text-main); margin-top: 20px; }
         .modal-body p { margin-bottom: 15px; color: #cbd5e1; }
-        .modal-body code { background: #0f172a; padding: 2px 6px; border-radius: 4px; font-family: 'Roboto Mono', monospace; color: var(--success); }
-        .modal-body pre { background: #0f172a; padding: 15px; border-radius: 8px; overflow-x: auto; margin: 15px 0; border: 1px solid #333; }
+        .modal-body code { background: #0f172a; padding: 2px 6px; border-radius: 4px; font-family: 'Roboto Mono', monospace; color: var(--success); word-break: break-all; }
+        .modal-body pre { 
+            background: #0f172a; 
+            padding: 15px; 
+            border-radius: 8px; 
+            overflow-x: auto; /* Scroll horizontal si es necesario */
+            margin: 15px 0; 
+            border: 1px solid #333; 
+            max-width: 100%; /* Evita que rompa el contenedor */
+        }
         .modal-body li { color: #cbd5e1; margin-bottom: 8px; }
 
         /* --- FOOTER --- */
@@ -435,14 +458,20 @@
             .nav-links { display: none; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; justify-content: center; }
-            .modal-content { width: 95%; margin: 10% auto; padding: 20px; }
+            
+            /* Ajuste del modal en móvil */
+            .modal-content { 
+                width: 90%; /* Más estrecho para asegurar márgenes */
+                margin: 15% auto; 
+                padding: 20px; 
+            }
 
             /* --- ARREGLO PARA MÓVIL: Typewriter Overflow --- */
             .typewriter {
-                font-size: 1rem; /* Reducimos la letra en móvil */
-                white-space: normal; /* Permitimos que baje de línea */
-                height: auto; /* Altura automática */
-                border-right: none; /* Opcional: quitamos el cursor si molesta al bajar de línea */
+                font-size: 1rem; 
+                white-space: normal; 
+                height: auto; 
+                border-right: none; 
             }
         }
 
@@ -466,7 +495,7 @@
 
     <!-- HERO -->
     <section class="hero">
-        <h3><span class="es">Hola, soy</span><span class="en">Hi, I am</span></h3>
+        <h3><span class="es">Hola, mi nombre es</span><span class="en">Hi, my name is</span></h3>
         <h1>Luis Diego.</h1>
         <div class="typewriter" id="typing-text"></div>
         
@@ -489,6 +518,7 @@
             </div>
             <div class="status-badge">
                 <i class="fa-solid fa-location-dot"></i> 
+                <!-- CAMBIO: Solo Remoto, se eliminó Híbrido -->
                 <span class="es">Remoto</span><span class="en">Remote</span>
             </div>
              <div class="status-badge">
@@ -514,7 +544,15 @@
             <span class="number">01.</span>
             <h2><span class="es">Sobre Mí</span><span class="en">About Me</span></h2>
         </div>
+
+        <!-- CAMBIO: Foto movida aquí, después del título y antes del contenido -->
+        <!-- Se actualizó el enlace de la imagen y ahora se mostrará a color -->
+        <div class="profile-container">
+            <img src="https://i.imgur.com/VTeyHGq.png" alt="Foto de Luis Diego" class="profile-img">
+        </div>
+
         <div class="about-content">
+            <!-- Columna Izquierda: Texto Principal -->
             <div>
                 <p>
                     <span class="es">
@@ -530,61 +568,72 @@
                     <span class="en">I am currently focused on obtaining certifications and completing practical labs on platforms like TryHackMe and HackTheBox.</span>
                 </p>
                 
-                <h3 style="margin-top: 20px; color: var(--text-main);">
+                <h3 style="margin-top: 30px; color: var(--text-main);">
                     <span class="es">Tecnologías que uso:</span><span class="en">Tech Stack:</span>
                 </h3>
                 <div class="skills-grid">
                     <span class="skill-tag">Linux / Bash</span>
+                    <span class="skill-tag">Python Scripting</span>
                     <span class="skill-tag">Wireshark</span>
                     <span class="skill-tag">Nmap</span>
+                    <span class="skill-tag">Burp Suite</span>
                     <span class="skill-tag">Active Directory</span>
                     <span class="skill-tag">SIEM (Splunk)</span>
                 </div>
+            </div>
 
-                <h3 style="margin-top: 30px; color: var(--text-main);">
+            <!-- Columna Derecha: Certificaciones + Terminal (sin foto) -->
+            <div class="about-visuals">
+                
+                <!-- MOVIDO AQUÍ: Educación y Certificaciones -->
+                <h3 style="margin-top: 20px; color: var(--text-main); align-self: flex-start;">
                     <span class="es">Educación y Certificaciones:</span><span class="en">Education & Certifications:</span>
                 </h3>
                 
                 <div class="education-container">
                     
-                    <!-- Item 1 -->
-                  <div style="border-left: 2px solid var(--secondary); padding-left: 15px;">
+                    <!-- PLANTILLA PARA NUEVA EDUCACIÓN / CERTIFICACIÓN:
+                         Copia este bloque y pégalo arriba para agregar más.
+                    <div style="border-left: 2px solid var(--secondary); padding-left: 15px;">
                         <h4 style="color: var(--text-main); margin-bottom: 4px;">
-                            <span class="es">Ténico en Ciberseguridad</span>
-                            <span class="en">Technical Degree in Cybersecurity</span>
+                            <span class="es">Título en Español</span>
+                            <span class="en">Title in English</span>
+                        </h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+                            <span class="es">Institución</span>
+                            <span class="en">Institution</span>
+                        </p>
+                        <span style="color: var(--text-muted); font-size: 0.85rem; font-family: 'Roboto Mono', monospace;">
+                            AÑO
+                        </span>
+                    </div>
+                    -->
+
+                    <!-- Certificación Añadida: Lead Cybersecurity Professional Certification -->
+                    <div style="border-left: 2px solid var(--primary); padding-left: 15px;">
+                        <h4 style="color: var(--text-main); margin-bottom: 4px;">
+                            Lead Cybersecurity Professional Certification - LCSPC™
+                        </h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+                            Certiprof
+                        </p>
+                        <span style="color: var(--success); font-size: 0.85rem; font-family: 'Roboto Mono', monospace;">2025</span>
+                    </div>
+
+                    <!-- Item 1: CENFOTEC -->
+                    <div style="border-left: 2px solid var(--primary); padding-left: 15px;">
+                        <h4 style="color: var(--text-main); margin-bottom: 4px;">
+                            <span class="es">Técnico en Ciberseguridad</span>
+                            <span class="en">Technical Degree in Cyber Security</span>
                         </h4>
                         <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
                             <span class="es">Universidad CENFOTEC, Costa Rica</span>
                             <span class="en">CENFOTEC University, Costa Rica</span>
                         </p>
-                        <span style="color: var(--text-muted); font-size: 0.85rem; font-family: 'Roboto Mono', monospace;">
-                            <span class="es">Graduado, 2025</span>
-                            <span class="en">Graduated, 2025</span>
-                        </span>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div style="border-left: 2px solid var(--secondary); padding-left: 15px;">
-                        <h4 style="color: var(--text-main); margin-bottom: 4px;">
-                            <span class="es">Ingeniería en Sistemas / Ciberseguridad</span>
-                            <span class="en">B.S. Computer Science / Cybersecurity</span>
-                        </h4>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
-                            <span class="es">Nombre de tu Universidad</span>
-                            <span class="en">University Name</span>
-                        </p>
-                        <span style="color: var(--text-muted); font-size: 0.85rem; font-family: 'Roboto Mono', monospace;">
-                            <span class="es">En curso / Graduado</span>
-                            <span class="en">In Progress / Graduated</span>
-                        </span>
+                        <span style="color: var(--success); font-size: 0.85rem; font-family: 'Roboto Mono', monospace;">2025</span>
                     </div>
 
                 </div>
-
-            </div>
-
-            <div class="profile-container">
-                  <img src="perfil.jpg" alt="Foto de Luis Diego" class="profile-img" onerror="this.src='https://i.imgur.com/qxSSlGJ.png';">
             </div>
         </div>
     </section>
@@ -656,7 +705,7 @@
     <section id="writeups">
         <div class="section-title">
             <span class="number">03.</span>
-            <h2>Walkthroughs</h2>
+            <h2>TryHackMe Walkthroughs</h2>
         </div>
 
         <!-- 
