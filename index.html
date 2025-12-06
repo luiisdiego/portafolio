@@ -256,39 +256,41 @@
         }
 
         .profile-container {
-            position: relative;
-            width: 250px;
-            height: 250px;
-            margin: 0 auto; /* Centrado automático */
-            margin-bottom: 40px; /* Espacio debajo de la foto */
+            /* FOTO ELIMINADA - Clase mantenida pero vacía o no usada */
+            display: none; /* Ocultamos el contenedor por si acaso */
         }
 
-        .profile-img {
+        /* --- NUEVO: Terminal Stat Card --- */
+        .terminal-stat-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-            border: 2px solid var(--primary);
-            box-shadow: 10px 10px 0px rgba(0, 243, 255, 0.2);
-            transition: transform 0.3s ease;
+            max-width: 300px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            margin-top: 10px;
         }
 
-        .profile-container:hover .profile-img {
-            transform: translate(-5px, -5px);
-            box-shadow: 15px 15px 0px rgba(0, 243, 255, 0.4);
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
         }
-
-        .profile-container::before {
-            content: "";
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--secondary);
-            border-radius: 20px;
-            z-index: -1;
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
         }
+        .stat-label { color: var(--primary); }
+        .stat-value { color: #fff; }
 
         .skills-grid {
             display: flex;
@@ -531,7 +533,8 @@
                 <i class="fa-solid fa-folder-open"></i> 
                 <span class="es">Ver Proyectos</span><span class="en">View Projects</span>
             </a>
-            <a href="https://linkedin.com" target="_blank" class="btn btn-outline">
+            <!-- LINKEDIN ACTUALIZADO AQUI -->
+            <a href="https://www.linkedin.com/in/luisdiegosalgado/" target="_blank" class="btn btn-outline">
                 <i class="fa-brands fa-linkedin"></i> 
                 <span class="es">Conectar</span><span class="en">Connect</span>
             </a>
@@ -545,11 +548,7 @@
             <h2><span class="es">Sobre Mí</span><span class="en">About Me</span></h2>
         </div>
 
-        <!-- CAMBIO: Foto movida aquí, después del título y antes del contenido -->
-        <!-- Se actualizó el enlace de la imagen y ahora se mostrará a color -->
-        <div class="profile-container">
-            <img src="https://i.imgur.com/VTeyHGq.png" alt="Foto de Luis Diego" class="profile-img">
-        </div>
+        <!-- FOTO ELIMINADA: He quitado la etiqueta <img> y ocultado el contenedor -->
 
         <div class="about-content">
             <!-- Columna Izquierda: Texto Principal -->
@@ -608,6 +607,17 @@
                         </span>
                     </div>
                     -->
+
+                    <!-- NUEVA: Pre Security Learning Path - TryHackMe -->
+                    <div style="border-left: 2px solid var(--secondary); padding-left: 15px;">
+                        <h4 style="color: var(--text-main); margin-bottom: 4px;">
+                            Pre Security Learning Path
+                        </h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+                            TryHackMe
+                        </p>
+                        <span style="color: var(--success); font-size: 0.85rem; font-family: 'Roboto Mono', monospace;">2025</span>
+                    </div>
 
                     <!-- Certificación Añadida: Lead Cybersecurity Professional Certification -->
                     <div style="border-left: 2px solid var(--primary); padding-left: 15px;">
@@ -761,8 +771,10 @@
         </p>
         <div style="margin-top: 10px; font-size: 1.2rem;">
             <a href="#" style="margin: 0 10px;"><i class="fa-brands fa-github"></i></a>
-            <a href="#" style="margin: 0 10px;"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="#" style="margin: 0 10px;"><i class="fa-solid fa-envelope"></i></a>
+            <!-- LINKEDIN ACTUALIZADO AQUI -->
+            <a href="https://www.linkedin.com/in/luisdiegosalgado/" target="_blank" style="margin: 0 10px;"><i class="fa-brands fa-linkedin"></i></a>
+            <!-- CORREO ACTUALIZADO AQUI -->
+            <a href="mailto:salgado@luisdiego.tech" style="margin: 0 10px;"><i class="fa-solid fa-envelope"></i></a>
         </div>
     </footer>
 
