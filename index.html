@@ -34,7 +34,7 @@
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            overflow-x: hidden; /* Esto previene el scroll horizontal general */
+            overflow-x: hidden;
         }
 
         /* Fondo con grilla sutil */
@@ -111,9 +111,45 @@
             min-height: 100vh;
             padding: 120px 10% 80px 10%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+        }
+
+        /* Contenedor flexible para dividir texto e imagen */
+        .hero-container {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            /* Aumentamos el gap para separar texto de imagen */
+            gap: 40px; 
+        }
+
+        .hero-text-content {
+            /* Le damos mucho espacio (60% aprox) para que el texto quepa bien */
+            flex: 2; 
+            min-width: 300px; 
+        }
+
+        .hero-visual-main {
+            /* El icono ocupa el resto (40% aprox) */
+            flex: 1;
+            display: flex;
+            justify-content: center; /* Centrado en su columna */
+            align-items: center;
+        }
+
+        .hero-icon {
+            font-size: 12rem; 
+            color: rgba(0, 243, 255, 0.1); 
+            filter: drop-shadow(0 0 20px var(--primary));
+            -webkit-text-stroke: 2px var(--primary);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
 
         .hero h3 {
@@ -133,21 +169,29 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* Estilo de la máquina de escribir */
         .typewriter {
             font-family: 'Roboto Mono', monospace;
             color: var(--text-muted);
             font-size: 1.5rem;
             border-right: 2px solid var(--primary);
-            white-space: nowrap; /* Mantiene el texto en una línea en PC */
+            /* Importante: En escritorio NO rompe línea para efecto typewriter clásico */
+            white-space: nowrap; 
             overflow: hidden;
             animation: blink 0.75s step-end infinite;
+            display: inline-block;
+            vertical-align: bottom;
+            max-width: 100%; /* Asegura que no desborde */
+        }
+        
+        /* Contenedor para evitar saltos de layout */
+        .typewriter-container {
             min-height: 1.6em;
-            max-width: 100%;
+            width: 100%;
+            margin-bottom: 20px;
         }
 
         .hero-text {
-            max-width: 600px;
-            margin-top: 25px;
             color: var(--text-muted);
             font-size: 1.1rem;
         }
@@ -244,7 +288,7 @@
             display: grid;
             grid-template-columns: 3fr 2fr;
             gap: 50px;
-            align-items: start; /* Alineación superior para que se vea mejor */
+            align-items: start;
         }
 
         /* Columna derecha del About */
@@ -256,41 +300,8 @@
         }
 
         .profile-container {
-            /* FOTO ELIMINADA - Clase mantenida pero vacía o no usada */
-            display: none; /* Ocultamos el contenedor por si acaso */
+            display: none; 
         }
-
-        /* --- NUEVO: Terminal Stat Card --- */
-        .terminal-stat-card {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 15px;
-            width: 100%;
-            max-width: 300px;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.85rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-            margin-top: 10px;
-        }
-
-        .terminal-header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #333;
-            padding-bottom: 8px;
-            margin-bottom: 10px;
-            color: var(--text-muted);
-            font-size: 0.75rem;
-        }
-        
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-        }
-        .stat-label { color: var(--primary); }
-        .stat-value { color: #fff; }
 
         .skills-grid {
             display: flex;
@@ -423,7 +434,6 @@
         .close-btn:hover { color: var(--primary); }
 
         .modal-body {
-            /* Asegura que el contenido no desborde horizontalmente */
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
@@ -436,10 +446,10 @@
             background: #0f172a; 
             padding: 15px; 
             border-radius: 8px; 
-            overflow-x: auto; /* Scroll horizontal si es necesario */
+            overflow-x: auto; 
             margin: 15px 0; 
             border: 1px solid #333; 
-            max-width: 100%; /* Evita que rompa el contenedor */
+            max-width: 100%; 
         }
         .modal-body li { color: #cbd5e1; margin-bottom: 8px; }
 
@@ -454,6 +464,27 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
+            .hero {
+                padding: 100px 5% 50px 5%;
+                min-height: auto;
+            }
+
+            .hero-container {
+                /* Icono arriba (reverse hace que el segundo elemento en HTML vaya primero) */
+                flex-direction: column-reverse; 
+                gap: 30px;
+            }
+
+            .hero-text-content, .hero-visual-main {
+                flex: auto; 
+                width: 100%;
+            }
+            
+            /* En móvil volvemos a centrar el icono */
+            .hero-visual-main {
+                justify-content: center;
+            }
+
             .hero h1 { font-size: 2.8rem; }
             .about-content { grid-template-columns: 1fr; }
             nav { padding: 20px; }
@@ -461,19 +492,22 @@
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; justify-content: center; }
             
-            /* Ajuste del modal en móvil */
             .modal-content { 
-                width: 90%; /* Más estrecho para asegurar márgenes */
+                width: 90%; 
                 margin: 15% auto; 
                 padding: 20px; 
             }
 
-            /* --- ARREGLO PARA MÓVIL: Typewriter Overflow --- */
+            /* FIX: Permitimos que el texto rompa línea en móvil */
             .typewriter {
                 font-size: 1rem; 
                 white-space: normal; 
                 height: auto; 
                 border-right: none; 
+            }
+
+            .hero-icon {
+                font-size: 8rem;
             }
         }
 
@@ -497,47 +531,59 @@
 
     <!-- HERO -->
     <section class="hero">
-        <h3><span class="es">Hola, mi nombre es</span><span class="en">Hi, my name is</span></h3>
-        <h1>Luis Diego.</h1>
-        <div class="typewriter" id="typing-text"></div>
-        
-        <p class="hero-text">
-            <span class="es">
-                Transformo la curiosidad técnica en defensa digital. Mi enfoque combina la mentalidad ofensiva para fortalecer infraestructuras críticas y detectar amenazas antes de que ocurran. 
-                Actualmente desplegando laboratorios, rompiendo máquinas en CTFs y documentando el proceso.
-            </span>
-            <span class="en">
-                I transform technical curiosity into digital defense. My approach combines an offensive mindset to harden critical infrastructures and detect threats before they occur.
-                Currently deploying labs, breaking machines in CTFs, and documenting the process.
-            </span>
-        </p>
+        <div class="hero-container">
+            <!-- Columna Texto (Izquierda en Desktop / Abajo en Móvil) -->
+            <div class="hero-text-content">
+                <h3><span class="es">Hola, mi nombre es</span><span class="en">Hi, my name is</span></h3>
+                <h1>Luis Diego.</h1>
+                
+                <!-- Contenedor para el typewriter para evitar saltos -->
+                <div class="typewriter-container">
+                    <div class="typewriter" id="typing-text"></div>
+                </div>
+                
+                <p class="hero-text">
+                    <span class="es">
+                        Transformo la curiosidad técnica en defensa digital. Mi enfoque combina la mentalidad ofensiva para fortalecer infraestructuras críticas y detectar amenazas antes de que ocurran. 
+                        Actualmente desplegando laboratorios, rompiendo máquinas en CTFs y documentando el proceso.
+                    </span>
+                    <span class="en">
+                        I transform technical curiosity into digital defense. My approach combines an offensive mindset to harden critical infrastructures and detect threats before they occur.
+                        Currently deploying labs, breaking machines in CTFs, and documenting the process.
+                    </span>
+                </p>
 
-        <!-- BADGES INFORMATIVOS -->
-        <div class="hero-badges">
-            <div class="status-badge" style="color: var(--success); border-color: rgba(0, 255, 157, 0.3);">
-                <i class="fa-solid fa-circle-dot fa-fade"></i> 
-                <span class="es">Disponible</span><span class="en">Available for work</span>
-            </div>
-            <div class="status-badge">
-                <i class="fa-solid fa-location-dot"></i> 
-                <!-- CAMBIO: Solo Remoto, se eliminó Híbrido -->
-                <span class="es">Remoto</span><span class="en">Remote</span>
-            </div>
-             <div class="status-badge">
-                <i class="fa-solid fa-shield-halved"></i> Blue Team Focus
-            </div>
-        </div>
+                <!-- BADGES INFORMATIVOS -->
+                <div class="hero-badges">
+                    <div class="status-badge" style="color: var(--success); border-color: rgba(0, 255, 157, 0.3);">
+                        <i class="fa-solid fa-circle-dot fa-fade"></i> 
+                        <span class="es">Disponible</span><span class="en">Available for work</span>
+                    </div>
+                    <div class="status-badge">
+                        <i class="fa-solid fa-location-dot"></i> 
+                        <span class="es">Remoto</span><span class="en">Remote</span>
+                    </div>
+                    <div class="status-badge">
+                        <i class="fa-solid fa-shield-halved"></i> Blue Team Focus
+                    </div>
+                </div>
 
-        <div class="hero-buttons">
-            <a href="#projects" class="btn">
-                <i class="fa-solid fa-folder-open"></i> 
-                <span class="es">Ver Proyectos</span><span class="en">View Projects</span>
-            </a>
-            <!-- LINKEDIN ACTUALIZADO AQUI -->
-            <a href="https://www.linkedin.com/in/luisdiegosalgado/" target="_blank" class="btn btn-outline">
-                <i class="fa-brands fa-linkedin"></i> 
-                <span class="es">Conectar</span><span class="en">Connect</span>
-            </a>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn">
+                        <i class="fa-solid fa-folder-open"></i> 
+                        <span class="es">Ver Proyectos</span><span class="en">View Projects</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/luisdiegosalgado/" target="_blank" class="btn btn-outline">
+                        <i class="fa-brands fa-linkedin"></i> 
+                        <span class="es">Conectar</span><span class="en">Connect</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Columna Visual (Derecha en Desktop / Arriba en Móvil) -->
+            <div class="hero-visual-main">
+                <i class="fa-solid fa-user-shield hero-icon"></i>
+            </div>
         </div>
     </section>
 
@@ -547,8 +593,6 @@
             <span class="number">01.</span>
             <h2><span class="es">Sobre Mí</span><span class="en">About Me</span></h2>
         </div>
-
-        <!-- FOTO ELIMINADA: He quitado la etiqueta <img> y ocultado el contenedor -->
 
         <div class="about-content">
             <!-- Columna Izquierda: Texto Principal -->
@@ -581,7 +625,7 @@
                 </div>
             </div>
 
-            <!-- Columna Derecha: Certificaciones + Terminal (sin foto) -->
+            <!-- Columna Derecha: Solo Certificaciones -->
             <div class="about-visuals">
                 
                 <!-- MOVIDO AQUÍ: Educación y Certificaciones -->
@@ -591,23 +635,6 @@
                 
                 <div class="education-container">
                     
-                    <!-- PLANTILLA PARA NUEVA EDUCACIÓN / CERTIFICACIÓN:
-                         Copia este bloque y pégalo arriba para agregar más.
-                    <div style="border-left: 2px solid var(--secondary); padding-left: 15px;">
-                        <h4 style="color: var(--text-main); margin-bottom: 4px;">
-                            <span class="es">Título en Español</span>
-                            <span class="en">Title in English</span>
-                        </h4>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
-                            <span class="es">Institución</span>
-                            <span class="en">Institution</span>
-                        </p>
-                        <span style="color: var(--text-muted); font-size: 0.85rem; font-family: 'Roboto Mono', monospace;">
-                            AÑO
-                        </span>
-                    </div>
-                    -->
-
                     <!-- NUEVA: Pre Security Learning Path - TryHackMe -->
                     <div style="border-left: 2px solid var(--secondary); padding-left: 15px;">
                         <h4 style="color: var(--text-main); margin-bottom: 4px;">
@@ -656,16 +683,6 @@
         </div>
         
         <div class="projects-grid">
-            <!-- 
-                ========================================================================
-                [INSTRUCCIÓN] CÓMO AGREGAR UN NUEVO PROYECTO:
-                1. Copia todo el bloque <div class="project-card" ...> hasta el cierre </div>
-                2. Pégalo debajo del último proyecto.
-                3. Cambia el 'onclick' para que apunte a un nuevo modal (ej: modal-nuevo)
-                4. Ve abajo a la sección de MODALES y crea el modal correspondiente.
-                ========================================================================
-            -->
-
             <!-- Proyecto 1 (Keylogger) -->
             <div class="project-card" onclick="openModal('modal-keylogger')">
                 <i class="fa-regular fa-folder folder-icon"></i>
@@ -718,16 +735,6 @@
             <h2>TryHackMe Walkthroughs</h2>
         </div>
 
-        <!-- 
-            ========================================================================
-            [INSTRUCCIÓN] CÓMO AGREGAR UN NUEVO WALKTHROUGH:
-            1. Copia el bloque <div class="writeup-item" ...> completo.
-            2. Pégalo abajo.
-            3. Cambia el 'onclick' a un nombre nuevo (ej: modal-nueva-maquina)
-            4. Crea el modal correspondiente al final del archivo.
-            ========================================================================
-        -->
-
         <!-- Walkthrough 1: Pickle Rick -->
         <div class="writeup-item" onclick="openModal('modal-pickle')">
             <div class="writeup-info">
@@ -771,9 +778,7 @@
         </p>
         <div style="margin-top: 10px; font-size: 1.2rem;">
             <a href="#" style="margin: 0 10px;"><i class="fa-brands fa-github"></i></a>
-            <!-- LINKEDIN ACTUALIZADO AQUI -->
             <a href="https://www.linkedin.com/in/luisdiegosalgado/" target="_blank" style="margin: 0 10px;"><i class="fa-brands fa-linkedin"></i></a>
-            <!-- CORREO ACTUALIZADO AQUI -->
             <a href="mailto:salgado@luisdiego.tech" style="margin: 0 10px;"><i class="fa-solid fa-envelope"></i></a>
         </div>
     </footer>
@@ -782,22 +787,6 @@
     <!--                               CONTENIDO OCULTO (MODALES)                          -->
     <!-- Aquí es donde escribes la información detallada de tus Proyectos y Walkthroughs.  -->
     <!-- ================================================================================= -->
-
-    <!-- 
-        PLANTILLA PARA NUEVO MODAL:
-        <div id="modal-TU-ID-NUEVO" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal('modal-TU-ID-NUEVO')">&times;</span>
-                <div class="modal-body">
-                    <h2>Titulo</h2>
-                    <p>
-                        <span class="es">Texto español</span>
-                        <span class="en">English text</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    -->
 
     <!-- Modal 1: Keylogger -->
     <div id="modal-keylogger" class="modal">
